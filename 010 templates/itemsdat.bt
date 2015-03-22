@@ -1,0 +1,47 @@
+//--------------------------------------
+//--- 010 Editor v3.2.2 Binary Template
+//
+// File:
+// Author:
+// Revision:
+// Purpose:
+//--------------------------------------
+
+struct header {
+    FSkip(2);
+};
+
+struct item {
+    FSkip(6);
+    int id : 16;
+    string name;
+    FSkip(4);
+    string modelPath;
+    byte class;
+    byte reqlvl;
+    int goldPrice;
+    int cashPrice;
+    byte shoptype;
+    FSkip(5);
+    short basicAttack<comment="basic attack or number of slots thats potion takes">;
+    short rangeAttack<comment="range attack or number of potions">;
+    short specialAttack;
+    short gripAttack;
+    short callDestruction;
+    short maxArmor;
+    short maxEnergy;
+    short maxCellPoint;
+    float attackSpeed;
+    float moveSpeed;
+    byte cpConsumption;
+    FSkip(2);
+    byte chaosTime;
+    FSkip(1);
+    string texture1Path;
+    string texture2Path;
+    string scriptPath;
+    string description;
+};
+
+header m_header;
+item m_item[1123] <optimize=false>;

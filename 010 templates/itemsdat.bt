@@ -8,21 +8,24 @@
 //--------------------------------------
 
 struct header {
-    FSkip(2);
+    short lastId;
 };
 
 struct item {
-    FSkip(6);
-    int id : 16;
-    string name;
+    int mainId : 16 <bgcolor=0x00BFFF>;
+    FSkip(2);
+    int parentId : 16;
+    string name <bgcolor=cAqua>;
     FSkip(4);
     string modelPath;
     byte class;
     byte reqlvl;
     int goldPrice;
     int cashPrice;
-    byte shoptype;
-    FSkip(5);
+    byte shoptype ;
+    byte powerUser;
+    byte itemType;
+    FSkip(3);
     short basicAttack<comment="basic attack or number of slots thats potion takes">;
     short rangeAttack<comment="range attack or number of potions">;
     short specialAttack;
@@ -44,4 +47,4 @@ struct item {
 };
 
 header m_header;
-item m_item[1123] <optimize=false>;
+item m_item[1130] <optimize=false>;

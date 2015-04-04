@@ -1,0 +1,65 @@
+//--------------------------------------
+//--- 010 Editor v3.2.2 Script File
+//
+// File:
+// Author:
+// Revision:
+// Purpose:
+//--------------------------------------
+
+int i;
+int k = 0;
+string output1 = "Deleted rings: ";
+string output2 = "Sweety and illusion: ";
+string output3 = "Other edited rings: ";
+
+int isValueMatched(string val){
+    if ((m_item[i].name == "Eagle Ring") ||
+        (m_item[i].name == "Illusion") ||
+        (m_item[i].name == "Sweety(9+)") ||
+        (m_item[i].name == "Skull ring(10)") ||
+        (m_item[i].name == "Wizard Special(5+)") ||
+        (m_item[i].name == "Promise Ring(6+)") ||
+        (m_item[i].name == "Cas Ring(5)") ||
+        (m_item[i].name == "Protection(3+)") ||
+        (m_item[i].name == "Celline Green(6+)") ||
+        (m_item[i].name == "Celline Blue(6+)") ||
+        (m_item[i].name == "Celline Red(6+)") ||
+        (m_item[i].name == "Pain of Cell(4)"))
+        return 1;
+    return 0;
+}
+
+for( i = 0; i < 1123; i++ ) {
+    if (m_item[i].itemType == 7) {
+        if (!isValueMatched(m_item[i].name)) {
+    	    if (m_item[i].shopType != 0) {
+	            m_item[i].shopType = 0;
+	            k++;
+	            SPrintf(output1, "%s %d,", output1, m_item[i].mainId ); 
+            }
+        }
+        else {
+            if ((m_item[i].name == "Illusion") ||
+                (m_item[i].name == "Sweety(9+)")) { 
+                m_item[i].shopType = 2;
+                m_item[i].cashPrice = 5;
+                m_item[i].reqlvl = 1;
+                m_item[i].powerUser = 0;
+                SPrintf(output2, "%s %d,", output2, m_item[i].mainId ); 
+            }
+            else {
+                m_item[i].shopType = 1;
+                m_item[i].goldPrice = 10000;
+                m_item[i].reqlvl = 25;
+                m_item[i].powerUser = 0;
+                SPrintf(output3, "%s %d,", output3, m_item[i].mainId ); 
+            }
+        }
+    }
+}
+Printf("%s\n", output1);
+Printf("%dn\n", k);
+
+Printf("%s\n", output2);
+Printf("%s\n", output3);

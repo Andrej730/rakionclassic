@@ -1,0 +1,60 @@
+//--------------------------------------
+//--- 010 Editor v3.2.2 Script File
+//
+// File:
+// Author:
+// Revision:
+// Purpose:
+//--------------------------------------
+
+int i;
+int k = 0;
+string output1 = "Deleted ids: ";
+string output2 = "Lovely(15): ";
+string output3 = "Other changed necklaces: ";
+
+int isValueMatched(string val){
+    if ((m_item[i].name == "Lovely(15)") ||
+        (m_item[i].name == "Skull necklace(20)") ||
+        (m_item[i].name == "Gold Cube S(7+)") ||
+        (m_item[i].name == "Cell Yell S(7+)") ||
+        (m_item[i].name == "Neocross(9+)") ||
+        (m_item[i].name == "Red Omu(9+)") ||
+        (m_item[i].name == "Pain of Cell(7)") ||
+        (m_item[i].name == "Extreme(7)"))
+        return 1;
+    return 0;
+}
+
+for( i = 0; i < 1123; i++ ) {
+    if (m_item[i].itemType == 6) {
+        if (!isValueMatched(m_item[i].name)) {
+    	    if (m_item[i].shopType != 0) {
+	            m_item[i].shopType = 0;
+	            k++;
+	            SPrintf(output1, "%s %d,", output1, m_item[i].mainId ); 
+            }
+        }
+        else {
+            if ((m_item[i].name == "Lovely(15)")) { 
+                m_item[i].shopType = 2;
+                m_item[i].cashPrice = 8;
+                m_item[i].reqlvl = 1;
+                m_item[i].powerUser = 0;
+                SPrintf(output2, "%s %d,", output2, m_item[i].mainId ); 
+            }
+            else {
+                m_item[i].shopType = 1;
+                m_item[i].goldPrice = 25000;
+                m_item[i].reqlvl = 25;
+                m_item[i].powerUser = 0;
+                SPrintf(output3, "%s %d,", output3, m_item[i].mainId ); 
+            }
+        }
+    }
+}
+Printf("%s\n", output1);
+Printf("%dn\n", k);
+
+Printf("%s\n", output2);
+Printf("%s\n", output3);
